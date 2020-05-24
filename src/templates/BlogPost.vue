@@ -70,3 +70,19 @@ export default {
   width: 100%;
 }
 </style>
+
+<page-query>
+query fireArtists {
+	posts: allFireArtists(sortBy: "name" order: ASC) {
+    edges {
+      node {
+        id
+        name
+        songs
+        osnutak
+        myRating
+      }
+    }
+  }
+}
+</page-query>

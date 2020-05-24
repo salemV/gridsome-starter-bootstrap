@@ -1,41 +1,31 @@
+// gridsome-config.js
+
+// const { db } = require('gridsome-source-firestore')
+
 module.exports = {
-  siteName: 'Gridsome starter bootstrap',
-  siteDescription: 'A starter project for Gridsome with Bootstrap and some other useful tools.',
-  siteUrl: 'https://gridsome-starter-bootstrap.loke.dev',
   plugins: [
     {
-      use: '@gridsome/source-filesystem',
+      use: 'gridsome-source-firestore',
       options: {
-        path: 'blog/**/*.md',
-        typeName: 'BlogPost',
-        resolveAbsolutePaths: true,
-        remark: {
-          externalLinksTarget: '_blank',
-          externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
-        },
-      },
-    },
-    {
-      use: '@gridsome/plugin-google-analytics',
-      options: {
-        id: 'UA-72659574-10'
-      }
-    },
-    {
-      use: '@gridsome/plugin-sitemap',
-      options: {
-        cacheTime: 600000
+        credentials: require('./kontakt-lista-firebase-adminsdk-pneor-2441213898'), // Replace with your credentials file you downloaded.
+        debug: true, // Default false, should be true to enable live data updates
+        ignoreImages: false, // Default false
+        imageDirectory: 'fg_images', // Default /fg_images
+        collections: [ {
+          ref: (db) => {
+            return db.collection('artists')
+          }
+        }
+        ]
       }
     }
   ],
-  css: {
-    loaderOptions: {
-      scss: {
+  templates: {
+    FireArtists: [
+      {
+        path: '/artists/:path',
+        component: './src/templates/ArtistInfo.vue'
       }
-    }
-  },
-  devServer: {
-    host: '0.0.0.0',
-    port: 8080
+    ]
   }
 }

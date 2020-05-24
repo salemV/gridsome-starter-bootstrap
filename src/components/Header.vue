@@ -1,29 +1,12 @@
 <template>
   <header class="header">
-    <b-navbar class="p-0" toggleable="md" type="light">
-        <b-navbar-brand>
-        <g-link class="logo-home logo-desktop" to="/">{{ $static.metadata.siteName }}</g-link>
-        <g-link class="logo-home logo–mobile" to="/"><img class="logo-image" alt="logo" src="../assets/images/logo.png"></g-link>
+    <b-navbar class="p-0 align-center" toggleable="md" type="light">
+      <b-navbar-brand>
+        <g-link class="logo-home logo-desktop" to="/">AWESOME SONG LIST</g-link>
       </b-navbar-brand>
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-collapse is-nav id="nav_collapse">
-        <b-navbar-nav class="ml-auto">
-          <g-link class="nav--link" to="/about">About</g-link>
-          <g-link class="nav--link" to="/blog">Blog</g-link>
-          <g-link class="nav--link" to="/contact">Contact</g-link>
-        </b-navbar-nav>
-      </b-collapse>
     </b-navbar>
   </header>
 </template>
-
-<static-query>
-query {
-  metadata {
-    siteName
-  }
-}
-</static-query>
 
 <style lang="scss">
 nav {
@@ -31,17 +14,25 @@ nav {
   padding-top: 1rem;
 }
 
+.align-center {
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+}
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
 
 .logo-home {
-  font-size: 24px;
+  font-size: 50px;
+  letter-spacing: 2px;
   max-width: 75%;
   font-weight: bold;
+  text-align: center;
+  color: white;
   &:hover {
     text-decoration: none;
   }
