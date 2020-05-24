@@ -17,11 +17,15 @@
     <div role="tablist">
         <b-card no-body class="mb-1" v-for="(song, index) in $page.post.songs" :key="index">
         <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-button block v-b-toggle="'accordion-' + index" variant="primary"> 
-                {{ song }} 
-                <b-icon-star-fill v-if="$page.post.favorites[index]" variant="warning" shift-h="10"/>
-                <b-icon-star v-else variant="warning" shift-h="10"/>
-            </b-button>
+            <b-button-group class="d-flex">
+              <b-button block v-b-toggle="'accordion-' + index" variant="primary"> 
+                  {{ song }} 
+              </b-button>
+              <b-button>
+                <b-icon-star-fill v-if="$page.post.favorites[index]" variant="warning"/>
+                <b-icon-star v-else variant="warning"/>              
+              </b-button>
+            </b-button-group>
         </b-card-header>
         <b-collapse :id="'accordion-' + index" accordion="my-accordion" role="tabpanel">
             <b-card-body>
