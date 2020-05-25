@@ -21,7 +21,7 @@
               <b-button block v-b-toggle="'accordion-' + index" variant="primary"> 
                   {{ song }} 
               </b-button>
-              <b-button>
+              <b-button @click="test(index)">
                 <b-icon-star-fill v-if="$page.post.favorites[index]" variant="warning"/>
                 <b-icon-star v-else variant="warning"/>              
               </b-button>
@@ -54,7 +54,22 @@ query fireArtists ($path: String!) {
 }
 </page-query>
 
-
+<script>
+export default {
+  data: () => {
+    return {
+      list: []
+    }
+  },
+  methods: {
+    test(index) {
+      if(this.$page.post.favorites[index]) {
+        this.list.push(this.$page.post.favorites[index]);
+      }
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 .white {
   color: white;

@@ -4,8 +4,28 @@
       Artist list
       <font-awesome :icon="['fas', 'music']"/>
     </h2>
-    <table class="table table-dark table-striped table-hover">
-      <thead>
+    <b-table
+      show-empty       
+      id="my-table"
+      :items="$page.posts.edges"
+      :fields="fields"
+      :per-page="perPage"
+      :current-page="currentPage" 
+      class="table table-dark table-striped table-hover">
+
+      <template v-slot:cell(name)="row">
+         <g-link class="name" :to="row.item.node.path">{{ row.item.node.name }}</g-link>
+      </template>
+
+      <template v-slot:cell(index)="row">
+        {{ row.index + 1 }}
+      </template>
+
+      <template v-slot:cell(osnutak)="row">
+       {{ row.item.node.osnutak }}.
+      </template>
+
+      <!-- <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>
@@ -22,8 +42,14 @@
           <td>{{ item.node.songs.length }}</td>
           <td>{{ item.node.osnutak + '.' }}</td>
         </tr>
-      </tbody>
-    </table>
+      </tbody> -->
+    </b-table>
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="my-table"
+    ></b-pagination>
   </Layout>
 </template>
 
@@ -45,9 +71,21 @@ query fireArtists {
 
 <script>
 export default {
+  data() {
+    return {
+      fields: [ 'index', {key: 'name'}, 'osnutak'],
+      perPage: 16,
+      currentPage: 1,
+    }
+  },
   metaInfo: {
     title: 'Kasia Song List'
-  }
+  },
+  computed: {
+      rows() {
+        return this.$page.posts.edges.length
+      }
+   }
 }
 </script>
 
