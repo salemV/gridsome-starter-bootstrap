@@ -74,7 +74,7 @@ export default {
   data() {
     return {
       fields: [ 'index', {key: 'name'}, 'osnutak'],
-      perPage: 16,
+      perPage: 11,
       currentPage: 1,
     }
   },
