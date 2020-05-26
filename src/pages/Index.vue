@@ -73,7 +73,7 @@ query fireArtists {
 export default {
   data() {
     return {
-      fields: [ 'index', {key: 'name'}, 'osnutak'],
+      fields: [ 'index', {key: 'name'}, {key: 'osnutak', label: 'Year'}],
       perPage: 11,
       currentPage: 1,
     }
